@@ -2,23 +2,29 @@
 #include "RoboDeResgate.hpp"
 #include <iostream>
 
-int main() {
+
+void processarResgate(const std::string& arquivoEntrada, const std::string& arquivoSaida) {
+    EstacaoEspacial estacao(0, 0);  
+    estacao.inicializarEstacao(arquivoEntrada);
 
     
-    EstacaoEspacial estacao(0, 0);  // Ajuste o tamanho da matriz conforme necessário
-    estacao.inicializarEstacao("estacao.txt");  // ESTE ARQUIVO DEVE TER AS INFORMAÇÕES DA MATRIZ E DO ASTRONAUTA
-
-    // Criar robô na posição inicial (0,0)
     RoboDeResgate robo(&estacao, 0, 0);
 
-    // Mostrar estado inicial
+    
     std::cout << "\n ESTACAO ESPACIAL:\n";
     estacao.mostrarEstacao();
 
-    // Iniciar resgate
+   
     robo.iniciarResgate();
 
-    // Exibir relatório final
-    robo.gerarRelatorio("saida.txt"); // AQUI VAI TER A SAIDA DO RELATORIO
+    
+    robo.gerarRelatorio(arquivoSaida);
+}
+
+int main() {
+
+    processarResgate("entrada1.txt", "saida1.txt");
+    processarResgate("entrada2.txt", "saida2.txt");
+
     return 0;
 }

@@ -1,0 +1,16 @@
+5 5
+S...A
+.#..~
+.A.#.
+.~~A.
+...FA
+Astronautas:
+Yuri Gagarin,85,0
+Buzz Aldrin,95,0
+Marcos Pontes,50,1
+Valentina Tereshkova,70,0
+Posições dos astronautas na matriz:
+Yuri Gagarin: (3,3)
+Buzz Aldrin: (2,1)
+Marcos Pontes: (0,4)
+Valentina Tereshkova: (4,4)

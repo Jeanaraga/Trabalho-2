@@ -17,7 +17,7 @@ EstacaoEspacial::~EstacaoEspacial() {
     }
 }
 
-// Inicializa a estação espacial a partir de um arquivo
+
 void EstacaoEspacial::inicializarEstacao(const std::string& arquivo) {
     std::ifstream file(arquivo);
     if (!file.is_open()) {

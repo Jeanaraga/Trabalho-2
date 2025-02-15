@@ -13,7 +13,7 @@ RoboDeResgate::RoboDeResgate(EstacaoEspacial* estacao, int startX, int startY)
 }
 
 
-// Verifica se o robô pode se mover para determinada posição
+
 bool RoboDeResgate::podeMover(int novaX, int novaY) {
     return (novaX >= 0 && novaX < estacao->getLinhas() &&
             novaY >= 0 && novaY < estacao->getColunas() &&
@@ -140,15 +140,15 @@ void RoboDeResgate::gerarRelatorio(const std::string& nomeArquivo) {
     // Fecha o arquivo
     saida.close();
 }
-// Inicia o processo de resgate
+
+
 void RoboDeResgate::iniciarResgate() {
     std::cout << "Robo iniciando resgate na posicao (" << x << ", " << y << ")\n";
-    marcarFogo();  // Marca as áreas próximas ao fogo como inacessíveis
+    marcarFogo();  
     percorrerMatriz();
 }
 
-// Retorna o número de passos
-// Em RoboDeResgate.cpp
+
 
 int RoboDeResgate::getPassos() const {
     return passos;
