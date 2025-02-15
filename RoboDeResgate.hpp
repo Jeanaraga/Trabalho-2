@@ -13,6 +13,7 @@ class RoboDeResgate {
         EstacaoEspacial* estacao;  // Ponteiro para a estação espacial
         std::vector<std::vector<bool>> visitado;  // Matriz de controle de visitação
         std::vector<Astronauta> resgatados;  // Lista de astronautas resgatados
+        std::vector<Astronauta> naoResgatados; // Lista de astronautas não resgatados
     
     public:
         // Construtor

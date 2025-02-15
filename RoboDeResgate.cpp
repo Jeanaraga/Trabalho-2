@@ -4,8 +4,6 @@
 #include <vector>
 
 // Construtor
-
-
 RoboDeResgate::RoboDeResgate(EstacaoEspacial* estacao, int startX, int startY)
     : estacao(estacao), x(startX), y(startY), passos(0) {
     int linhas = estacao->getLinhas();
@@ -94,21 +92,40 @@ void RoboDeResgate::percorrerMatriz() {
 
 // Gera um relatório final
 void RoboDeResgate::gerarRelatorio() {
-    std::cout << "\nRelatório Final:\n";
+    std::cout << "\nRelatorio Final:\n";
     std::cout << "Astronautas resgatados: " << resgatados.size() << "\n";
+    
+    // Exibe astronautas resgatados
     for (const auto& astro : resgatados) {
         std::cout << "- " << astro.getNome() << " | Posicao: (" << astro.getX() 
                   << ", " << astro.getY() << ")" << "| Saude: " << astro.getSaude() 
                   << " | Precisa Atendimento Urgente: " << (astro.precisaAtendimentoUrgente() ? "Sim" : "Nao") << "\n";
     }
 
+    // Exibe astronautas não resgatados
+    std::cout << "\nAstronautas nao resgatados:\n";
+    for (const auto& astro : estacao->getAstronautas()) {
+        bool resgatado = false;
+        for (const auto& resgatadoAstronauta : resgatados) {
+            if (astro.getNome() == resgatadoAstronauta.getNome()) {
+                resgatado = true;
+                break;
+            }
+        }
+        if (!resgatado) {
+            std::cout << "- " << astro.getNome() << " | Posicao: (" << astro.getX() 
+                      << ", " << astro.getY() << ")" << "| Saude: " << astro.getSaude() 
+                      << " | Precisa Atendimento Urgente: " << (astro.precisaAtendimentoUrgente() ? "Sim" : "Nao") << "\n";
+        }
+    }
+
     // Exibe o número total de passos
-    std::cout << "\nTempo total da operação de resgate: " << getPassos() << " passos.\n";
+    std::cout << "\nTempo total da operacao de resgate: " << getPassos() << " passos.\n";
 }
 
 // Inicia o processo de resgate
 void RoboDeResgate::iniciarResgate() {
-    std::cout << "Robo iniciando resgate na posição (" << x << ", " << y << ")\n";
+    std::cout << "Robo iniciando resgate na posicao (" << x << ", " << y << ")\n";
     marcarFogo();  // Marca as áreas próximas ao fogo como inacessíveis
     percorrerMatriz();
 }
