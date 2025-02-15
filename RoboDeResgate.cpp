@@ -2,6 +2,7 @@
 #include <iostream>
 #include <queue>
 #include <vector>
+#include <fstream>  // Necessário para manipulação de arquivos
 
 // Construtor
 RoboDeResgate::RoboDeResgate(EstacaoEspacial* estacao, int startX, int startY)
@@ -91,19 +92,33 @@ void RoboDeResgate::percorrerMatriz() {
 
 
 // Gera um relatório final
-void RoboDeResgate::gerarRelatorio() {
-    std::cout << "\nRelatorio Final:\n";
-    std::cout << "Astronautas resgatados: " << resgatados.size() << "\n";
-    
-    // Exibe astronautas resgatados
-    for (const auto& astro : resgatados) {
-        std::cout << "- " << astro.getNome() << " | Posicao: (" << astro.getX() 
-                  << ", " << astro.getY() << ")" << "| Saude: " << astro.getSaude() 
-                  << " | Precisa Atendimento Urgente: " << (astro.precisaAtendimentoUrgente() ? "Sim" : "Nao") << "\n";
+void RoboDeResgate::gerarRelatorio(const std::string& nomeArquivo) {
+    // Abre o arquivo de saída com o nome recebido como parâmetro
+    std::ofstream saida(nomeArquivo);
+    if (!saida.is_open()) {
+        std::cerr << "Erro ao abrir o arquivo de saída: " << nomeArquivo << std::endl;
+        return;
     }
 
-    // Exibe astronautas não resgatados
-    std::cout << "\nAstronautas nao resgatados:\n";
+    // Definir um stream para a saída que será usado tanto para o arquivo quanto para a tela
+    auto imprimirRelatorio = [&saida](const std::string& linha) {
+        std::cout << linha;   // Imprime na tela
+        saida << linha;       // Imprime no arquivo
+    };
+
+    // Escreve o título do relatório
+    imprimirRelatorio("\nRelatorio Final:\n");
+    imprimirRelatorio("Astronautas resgatados: " + std::to_string(resgatados.size()) + "\n");
+
+    // Escreve informações dos astronautas resgatados
+    for (const auto& astro : resgatados) {
+        imprimirRelatorio("- " + astro.getNome() + " | Posicao: (" + std::to_string(astro.getX()) 
+                          + ", " + std::to_string(astro.getY()) + ") | Saude: " + std::to_string(astro.getSaude()) 
+                          + " | Precisa Atendimento Urgente: " + (astro.precisaAtendimentoUrgente() ? "Sim" : "Nao") + "\n");
+    }
+
+    // Escreve astronautas não resgatados
+    imprimirRelatorio("\nAstronautas nao resgatados:\n");
     for (const auto& astro : estacao->getAstronautas()) {
         bool resgatado = false;
         for (const auto& resgatadoAstronauta : resgatados) {
@@ -113,16 +128,18 @@ void RoboDeResgate::gerarRelatorio() {
             }
         }
         if (!resgatado) {
-            std::cout << "- " << astro.getNome() << " | Posicao: (" << astro.getX() 
-                      << ", " << astro.getY() << ")" << "| Saude: " << astro.getSaude() 
-                      << " | Precisa Atendimento Urgente: " << (astro.precisaAtendimentoUrgente() ? "Sim" : "Nao") << "\n";
+            imprimirRelatorio("- " + astro.getNome() + " | Posicao: (" + std::to_string(astro.getX()) 
+                              + ", " + std::to_string(astro.getY()) + ") | Saude: " + std::to_string(astro.getSaude()) 
+                              + " | Precisa Atendimento Urgente: " + (astro.precisaAtendimentoUrgente() ? "Sim" : "Nao") + "\n");
         }
     }
 
-    // Exibe o número total de passos
-    std::cout << "\nTempo total da operacao de resgate: " << getPassos() << " passos.\n";
-}
+    // Escreve o número total de passos
+    imprimirRelatorio("\nTempo total da operacao de resgate: " + std::to_string(getPassos()) + " passos.\n");
 
+    // Fecha o arquivo
+    saida.close();
+}
 // Inicia o processo de resgate
 void RoboDeResgate::iniciarResgate() {
     std::cout << "Robo iniciando resgate na posicao (" << x << ", " << y << ")\n";

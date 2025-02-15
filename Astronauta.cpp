@@ -1,10 +1,10 @@
 #include "Astronauta.hpp"
 
-// Construtor
+
 Astronauta::Astronauta(const std::string& nome, int saude, bool atendimentoUrgente, int x, int y)
     : nome(nome), saude(saude), atendimentoUrgente(atendimentoUrgente), x(x), y(y) {}
 
-// Métodos Get
+
 std::string Astronauta::getNome() const {
     return nome;
 }

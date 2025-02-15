@@ -6,7 +6,7 @@ int main() {
 
     
     EstacaoEspacial estacao(0, 0);  // Ajuste o tamanho da matriz conforme necessário
-    estacao.inicializarEstacao("estacao.txt");  // O arquivo 'estacao.txt' deve conter a matriz da estação
+    estacao.inicializarEstacao("estacao.txt");  // ESTE ARQUIVO DEVE TER AS INFORMAÇÕES DA MATRIZ E DO ASTRONAUTA
 
     // Criar robô na posição inicial (0,0)
     RoboDeResgate robo(&estacao, 0, 0);
@@ -19,7 +19,6 @@ int main() {
     robo.iniciarResgate();
 
     // Exibir relatório final
-    robo.gerarRelatorio();
-
+    robo.gerarRelatorio("saida.txt"); // AQUI VAI TER A SAIDA DO RELATORIO
     return 0;
 }

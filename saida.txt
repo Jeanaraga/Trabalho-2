@@ -1,0 +1,11 @@
+
+Relatorio Final:
+Astronautas resgatados: 4
+- Buzz Aldrin | Posicao: (5, 0) | Saude: 95 | Precisa Atendimento Urgente: Nao
+- Marcos Pontes | Posicao: (8, 2) | Saude: 50 | Precisa Atendimento Urgente: Sim
+- Yuri Gagarin | Posicao: (1, 9) | Saude: 85 | Precisa Atendimento Urgente: Nao
+- Valentina Tereshkova | Posicao: (3, 9) | Saude: 70 | Precisa Atendimento Urgente: Nao
+
+Astronautas nao resgatados:
+
+Tempo total da operacao de resgate: 40 passos.

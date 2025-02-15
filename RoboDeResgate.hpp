@@ -32,7 +32,7 @@ class RoboDeResgate {
         bool podeMover(int novaX, int novaY);
     
         // Mostra o relatório final
-        void gerarRelatorio();
+        void gerarRelatorio(const std::string& nomeArquivo);
     
         // Retorna o número total de passos
         int getPassos() const;

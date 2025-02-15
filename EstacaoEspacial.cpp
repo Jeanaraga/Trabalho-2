@@ -3,12 +3,12 @@
 #include <fstream>
 #include <sstream>
 
-// Construtor
+
 EstacaoEspacial::EstacaoEspacial(int linhas, int colunas) : linhas(linhas), colunas(colunas) {
     matriz.resize(linhas, std::vector<Modulo*>(colunas, nullptr));
 }
 
-// Destrutor - Libera memória da matriz
+
 EstacaoEspacial::~EstacaoEspacial() {
     for (int i = 0; i < linhas; ++i) {
         for (int j = 0; j < colunas; ++j) {
@@ -108,7 +108,7 @@ void EstacaoEspacial::inicializarEstacao(const std::string& arquivo) {
     }
 }
 
-// Exibe a matriz da estação espacial
+
 void EstacaoEspacial::mostrarEstacao() const {
     for (int i = 0; i < linhas; ++i) {
         for (int j = 0; j < colunas; ++j) {
@@ -118,7 +118,7 @@ void EstacaoEspacial::mostrarEstacao() const {
     }
 }
 
-// Verifica se um módulo pode ser acessado pelo robô
+
 bool EstacaoEspacial::podeAcessar(int linha, int coluna) const {
     if (linha >= 0 && linha < linhas && coluna >= 0 && coluna < colunas) {
         return matriz[linha][coluna]->podeAcessar();
@@ -126,12 +126,12 @@ bool EstacaoEspacial::podeAcessar(int linha, int coluna) const {
     return false;
 }
 
-// Adiciona um astronauta à lista
+
 void EstacaoEspacial::adicionarAstronauta(const Astronauta& astro) {
     astronautas.push_back(astro);
 }
 
-// Remove um astronauta pelo nome (quando for resgatado)
+
 void EstacaoEspacial::removerAstronauta(const std::string& nome) {
     for (auto it = astronautas.begin(); it != astronautas.end(); ++it) {
         if (it->getNome() == nome) {
@@ -141,12 +141,12 @@ void EstacaoEspacial::removerAstronauta(const std::string& nome) {
     }
 }
 
-// Retorna a lista de astronautas
+
 std::vector<Astronauta> EstacaoEspacial::getAstronautas() const {
     return astronautas;
 }
 
-// Exibe todos os astronautas na estação
+
 void EstacaoEspacial::mostrarAstronautas() const {
     std::cout << "Astronautas na estação:\n";
     for (const auto& astro : astronautas) {
@@ -156,12 +156,12 @@ void EstacaoEspacial::mostrarAstronautas() const {
     }
 }
 
-// Retorna o número de linhas da matriz
+
 int EstacaoEspacial::getLinhas() const {
     return linhas;
 }
 
-// Retorna o número de colunas da matriz
+
 int EstacaoEspacial::getColunas() const {
     return colunas;
 }
