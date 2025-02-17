@@ -2,7 +2,7 @@
 #include <iostream>
 #include <queue>
 #include <vector>
-#include <fstream>  // Necessário para manipulação de arquivos
+#include <fstream>  
 
 // Construtor
 RoboDeResgate::RoboDeResgate(EstacaoEspacial* estacao, int startX, int startY)

@@ -1,6 +1,7 @@
 #include "EstacaoEspacial.hpp"
 #include "RoboDeResgate.hpp"
 #include <iostream>
+#include <string>
 
 
 void processarResgate(const std::string& arquivoEntrada, const std::string& arquivoSaida) {

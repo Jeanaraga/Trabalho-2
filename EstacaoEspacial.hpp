@@ -31,6 +31,5 @@ public:
     // Métodos auxiliares
     int getLinhas() const;
     int getColunas() const;
-    Modulo* getModulo(int x, int y) const;  // <-- Adicionando esse método
-
+    Modulo* getModulo(int x, int y) const;
 };
